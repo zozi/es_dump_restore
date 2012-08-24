@@ -1,4 +1,4 @@
-Copyright (c) 2012 Nat Budin
+Copyright (c) 2012 PatientsLikeMe
 
 MIT License
 

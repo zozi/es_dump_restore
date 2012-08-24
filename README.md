@@ -1,24 +1,25 @@
-# EsDumpRestore
+# es_dump_restore
 
-TODO: Write a gem description
+A utility for safely dumping the contents of an ElasticSearch index to a compressed file and restoring it
+later on.  This can be used for backups or for cloning an ElasticSearch index without needing to take down
+the server.
+
+The file format is a ZIP file containing the index metadata, the number of objects in the index, and a
+series of commands to be sent to the ElasticSearch bulk API.
 
 ## Installation
 
-Add this line to your application's Gemfile:
-
-    gem 'es_dump_restore'
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install es_dump_restore
+    gem install es_dump_restore
 
 ## Usage
 
-TODO: Write usage instructions here
+To dump an ElasticSearch index to a file:
+
+    es_dump_restore dump ELASTIC_SEARCH_SERVER_URL INDEX_NAME DESTINATION_FILE
+
+To restore an index to an ElasticSearch server:
+
+    es_dump_restore restore ELASTIC_SEARCH_SERVER_URL DESTINATON_INDEX FILENAME
 
 ## Contributing
 

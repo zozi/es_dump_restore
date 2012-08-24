@@ -8,9 +8,9 @@ Gem::Specification.new do |gem|
   gem.version       = EsDumpRestore::VERSION
   gem.authors       = ["Nat Budin"]
   gem.email         = ["nbudin@patientslikeme.com"]
-  gem.description   = %q{TODO: Write a gem description}
-  gem.summary       = %q{TODO: Write a gem summary}
-  gem.homepage      = ""
+  gem.description   = %q{A utility for dumping the contents of an ElasticSearch index to a compressed file and restoring the dumpfile back to an ElasticSearch server}
+  gem.summary       = %q{Dump ElasticSearch indexes to files and restore them back}
+  gem.homepage      = "https://github.com/patientslikeme/es_dump_restore"
 
   gem.files         = `git ls-files`.split($/)
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
