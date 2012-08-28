@@ -2,6 +2,7 @@ require "es_dump_restore/es_client"
 require "es_dump_restore/dumpfile"
 require "thor"
 require "progress_bar"
+require "multi_json"
 
 module EsDumpRestore
   class App < Thor
