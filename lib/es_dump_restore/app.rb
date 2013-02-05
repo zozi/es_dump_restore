@@ -24,7 +24,7 @@ module EsDumpRestore
           dumpfile.get_objects_output_stream do |out|
             client.each_scroll_hit(scroll_id) do |hit|
               metadata = { index: { _type: hit["_type"], _id: hit["_id"] } }
-              out.write("#{metadata.to_json}\n#{hit["_source"].to_json}\n")
+              out.write("#{MultiJson.dump(metadata)}\n#{MultiJson.dump(hit["_source"])}\n")
               bar.increment!
             end
           end
