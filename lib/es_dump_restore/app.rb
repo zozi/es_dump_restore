@@ -47,5 +47,31 @@ module EsDumpRestore
       end
     end
 
+    no_commands do
+      # not command line access: use this to load the data in memory and recreate the
+      # index later
+      def load_data(url, index_name, filename)
+        @url = url
+        @index_name = index_name
+        @data = ""
+        client = EsClient.new(url, index_name)
+        Dumpfile.read(filename) do |dumpfile|
+          @index = dumpfile.index
+          bar = ProgressBar.new(dumpfile.num_objects)
+          dumpfile.scan_objects(1000) do |batch, size|
+            @data += batch
+            bar.increment!(size)
+          end
+        end
+      end
+
+      # You should delete the index before running this...
+      # load the dump data into the index
+      def recreate!
+        client = EsClient.new(@url, @index_name)
+        client.create_index(@index)
+        client.bulk_index(@data)
+      end
+    end
   end
 end
